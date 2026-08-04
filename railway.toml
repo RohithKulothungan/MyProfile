@@ -1,0 +1,15 @@
+# Railway deployment config
+# https://docs.railway.com/reference/config-as-code
+
+[build]
+builder = "RAILPACK"
+buildCommand = "npm run build"
+
+[deploy]
+healthcheckPath = "/"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"
+
+# Do not set startCommand — Railpack detects Vite and serves the SPA with Caddy.
+# Set this service variable in Railway if SPA mode is not detected automatically:
+#   RAILPACK_SPA_OUTPUT_DIR=dist
