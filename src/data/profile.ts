@@ -1,73 +1,93 @@
 export const profile = {
   name: 'Rohith K',
   fullName: 'Rohith KM',
-  title: 'Support Engineering · AI · Salesforce',
-  tagline: 'Building scalable systems for customer support, self-service, and agent operations.',
+  roles: ['Support Engineer', 'AI Builder', 'Salesforce Architect'],
+  tagline: 'I design systems that make customer support faster, smarter, and impossible to ignore.',
   location: 'Chennai, India',
   email: 'rohithkannan.2595@gmail.com',
   phone: '+91 8870312775',
   linkedin: 'https://www.linkedin.com/in/rohith-k-09546a150/',
   about:
-    'At Poshmark, I design and ship systems that make support faster and more reliable — combining Salesforce Service Cloud, backend services, APIs, and AI-assisted workflows.',
-  personalNote:
-    'Based in Chennai. Interested in product-driven engineering, early-stage teams, and thoughtful system design.',
+    'Technical owner at Poshmark building the infrastructure behind world-class customer support — from Salesforce Service Cloud to AI chatbots and high-scale backend platforms.',
+  philosophy:
+    'Great support engineering is invisible to customers and indispensable to teams. I build for both.',
+  stats: [
+    { value: '8+', label: 'Years building' },
+    { value: '5', label: 'Core systems shipped' },
+    { value: '3–9%', label: 'GMV lift from ML' },
+  ],
 }
 
 export const projects = [
   {
     id: 'case-tracking',
     title: 'Case Tracking System',
+    subtitle: 'Hybrid data architecture',
     description:
-      'Hybrid platform with MongoDB for fast case discovery and Salesforce as the source of truth for conversations.',
-    tags: ['MongoDB', 'Salesforce', 'Node.js'],
+      'MongoDB for lightning-fast case discovery. Salesforce as the conversation source of truth. Synced updates, ownership checks, and operational monitoring at scale.',
+    tags: ['MongoDB', 'Salesforce', 'Node.js', 'Redis'],
+    span: 'large' as const,
+    accent: '#7C5CFF',
   },
   {
     id: 'ai-chatbot',
     title: 'AI Support Chatbot',
+    subtitle: 'End-to-end ownership',
     description:
-      'Customer-facing chatbot with workflow design, API integration, safety controls, and human escalation paths.',
+      'Vendor evaluation to production — workflows, APIs, safety controls, and human escalation across orders, refunds, and returns.',
     tags: ['AI', 'Service Cloud', 'OAuth'],
+    span: 'medium' as const,
+    accent: '#FF6B4A',
   },
   {
     id: 'microservices',
     title: 'Support Microservices',
+    subtitle: 'Platform layer',
     description:
-      'Backend services exposing customer, order, and support capabilities with scoped access and observability.',
-    tags: ['Ruby', 'REST APIs', 'AWS'],
+      'Secure APIs exposing customer, order, and support data with scoped access and full observability.',
+    tags: ['Ruby', 'REST', 'AWS'],
+    span: 'small' as const,
+    accent: '#2DD4BF',
   },
   {
     id: 'salesforce',
-    title: 'Service Cloud Optimization',
+    title: 'Service Cloud',
+    subtitle: 'Agent experience',
     description:
-      'Improved agent workflows through case visibility, Omni-Channel, dashboards, and Apex/Flow/LWC automation.',
+      'Omni-Channel, dashboards, and automation across Apex, Flow, LWC, and Aura.',
     tags: ['Apex', 'LWC', 'Flow'],
+    span: 'small' as const,
+    accent: '#FBBF24',
   },
   {
     id: 'analytics',
     title: 'Analytics & Self-Service',
+    subtitle: 'Deflection at scale',
     description:
-      'Knowledge discovery and case deflection strategies with measurable impact on support volume and cost.',
-    tags: ['Analytics', 'Knowledge', 'Kibana'],
+      'Knowledge discovery and case deflection with measurable impact on volume and cost.',
+    tags: ['Kibana', 'Knowledge', 'Analytics'],
+    span: 'medium' as const,
+    accent: '#60A5FA',
   },
 ]
 
 export const experience = [
   {
     company: 'Poshmark',
-    role: 'ML & AI Engineer · Lead Backend Developer',
+    role: 'ML & AI Engineer · Lead Backend',
     period: '2024 — Present',
     location: 'Chennai',
     summary:
-      'Lead sprint delivery, Service Cloud integrations, and Customer Operations automation. ML-driven feed personalization with measurable GMV impact.',
+      'Own critical sprint delivery, Service Cloud integrations, and Customer Ops automation. ML feed personalization driving measurable GMV growth.',
     stack: ['Ruby on Rails', 'MongoDB', 'Apex', 'Einstein AI'],
   },
   {
     company: 'Ansearch',
-    role: 'Software Intern',
+    role: 'Software Intern · Founding Team',
     period: '2023 — 2024',
     location: 'Edinburgh',
     summary:
-      'Founding-team contributor on an Enterprise Search SaaS prototype — integration, ML pipelines, and architecture.',
+      'Built Enterprise Search SaaS prototype — ML pipelines, integrations, and scalable architecture from day one.',
     stack: ['Python', 'ML', 'Docker'],
   },
   {
@@ -76,7 +96,7 @@ export const experience = [
     period: '2019 — 2023',
     location: 'Chennai',
     summary:
-      'Built ML content-tagging systems and backend architecture connecting models to production infrastructure.',
+      'ML content-tagging systems and production architecture connecting models to backend at scale.',
     stack: ['Ruby on Rails', 'MongoDB', 'Apex'],
   },
   {
@@ -85,7 +105,7 @@ export const experience = [
     period: '2017 — 2019',
     location: 'Chennai',
     summary:
-      'Backend services for Zoho Finance — API integrations, tax compliance, and payment gateway work.',
+      'Backend services for Zoho Finance — PayPal, PayTm integrations, GST tax compliance, and API automation.',
     stack: ['Java', 'SQL', 'REST APIs'],
   },
 ]
@@ -95,31 +115,39 @@ export const education = [
     school: 'Herriot Watt University',
     degree: 'MSc Artificial Intelligence',
     year: '2024',
-    location: 'Edinburgh',
+    location: 'Edinburgh, Scotland',
   },
   {
     school: 'Pondicherry University',
     degree: 'B.Tech Information Technology',
     year: '2017',
-    location: 'Pondicherry',
+    location: 'Pondicherry, India',
     note: 'University Rank · 9.28 GPA',
   },
 ]
 
 export const skills = [
   'Salesforce Service Cloud',
-  'Apex · Flow · LWC',
-  'Node.js · Ruby · Java',
-  'REST APIs · OAuth · JWT',
-  'MongoDB · Redis · AWS',
-  'Kibana · Datadog · New Relic',
-  'AI workflow design',
-  'Technical ownership',
+  'Apex',
+  'Flow',
+  'LWC',
+  'Node.js',
+  'Ruby on Rails',
+  'Java',
+  'REST APIs',
+  'MongoDB',
+  'Redis',
+  'AWS',
+  'AI Workflows',
+  'OAuth 2.0',
+  'Kibana',
+  'Datadog',
+  'Technical Leadership',
 ]
 
 export const navLinks = [
   { label: 'About', href: '#about' },
-  { label: 'Work', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Work', href: '#work' },
+  { label: 'Journey', href: '#journey' },
   { label: 'Contact', href: '#contact' },
 ]

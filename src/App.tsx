@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Projects from './components/Projects'
+import Marquee from './components/Marquee'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -18,6 +19,7 @@ export default function App() {
         <Hero />
         <About />
         <Projects />
+        <Marquee />
         <Experience />
         <Contact />
       </main>

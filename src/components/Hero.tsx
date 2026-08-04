@@ -1,131 +1,131 @@
-import { useRef, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { profile } from '../data/profile'
 
 export default function Hero() {
-  const containerRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [0, 120])
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0])
+  const [roleIndex, setRoleIndex] = useState(0)
 
   useEffect(() => {
-    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let animationId: number
-    let time = 0
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const blobs = [
-      { x: 0.25, y: 0.35, r: 0.3, color: [129, 140, 248], speed: 0.00025 },
-      { x: 0.75, y: 0.25, r: 0.25, color: [99, 102, 241], speed: 0.0003 },
-    ]
-
-    const draw = () => {
-      time++
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      blobs.forEach((blob, i) => {
-        const cx = (blob.x + Math.sin(time * blob.speed + i) * 0.05) * canvas.width
-        const cy = (blob.y + Math.cos(time * blob.speed * 1.2 + i) * 0.04) * canvas.height
-        const radius = blob.r * Math.min(canvas.width, canvas.height)
-
-        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius)
-        gradient.addColorStop(0, `rgba(${blob.color.join(',')}, 0.08)`)
-        gradient.addColorStop(1, `rgba(${blob.color.join(',')}, 0)`)
-
-        ctx.fillStyle = gradient
-        ctx.beginPath()
-        ctx.arc(cx, cy, radius, 0, Math.PI * 2)
-        ctx.fill()
-      })
-
-      animationId = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      cancelAnimationFrame(animationId)
-      window.removeEventListener('resize', resize)
-    }
+    const interval = setInterval(() => {
+      setRoleIndex((i) => (i + 1) % profile.roles.length)
+    }, 2800)
+    return () => clearInterval(interval)
   }, [])
 
   return (
-    <section ref={containerRef} className="relative min-h-[92vh] flex items-end md:items-center overflow-hidden">
-      <canvas id="hero-canvas" className="absolute inset-0 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,#09090b_75%)]" />
+    <section className="relative min-h-[100dvh] flex flex-col justify-end overflow-hidden">
+      <div className="absolute inset-0 gradient-mesh" />
+      <div className="absolute inset-0 grid-bg" />
 
-      <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-36 pb-24 md:pt-40 md:pb-32"
-      >
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="section-label mb-6"
+      <div className="container-fluid relative z-10 flex flex-col justify-between min-h-[100dvh] pt-[calc(5rem+env(safe-area-inset-top))] pb-[max(2rem,env(safe-area-inset-bottom))]">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 1 }}
+          className="hidden md:flex justify-end"
         >
-          {profile.title}
-        </motion.p>
+          <div className="flex items-center gap-2 text-xs text-[#8a8a93]">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            Available for opportunities
+          </div>
+        </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="font-[family-name:var(--font-display)] text-[clamp(2.75rem,7vw,5.5rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white mb-8"
-        >
-          {profile.name}
-        </motion.h1>
+        <div className="flex-1 flex flex-col justify-center py-8 md:py-12">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="eyebrow mb-6 md:mb-8"
+          >
+            Customer Support · AI · Salesforce
+          </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="body-text max-w-xl mb-12"
-        >
-          {profile.tagline}
-        </motion.p>
+          <div className="mb-6 md:mb-8">
+            <motion.h1
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="display-xl text-white"
+            >
+              {profile.name}
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="mt-4 md:mt-6 h-[1.4em] overflow-hidden"
+            >
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={roleIndex}
+                  initial={{ y: 28, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -28, opacity: 0 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="font-[family-name:var(--font-display)] text-[clamp(1.25rem,3vw+0.5rem,2.25rem)] font-medium text-[var(--color-accent)]"
+                >
+                  {profile.roles[roleIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </motion.div>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.55 }}
+            className="body-lg max-w-2xl mb-10 md:mb-12"
+          >
+            {profile.tagline}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="flex flex-wrap gap-3"
+          >
+            <a href="#work" className="btn-primary" data-cursor>
+              See my work
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost"
+              data-cursor
+            >
+              LinkedIn
+            </a>
+          </motion.div>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="flex flex-wrap items-center gap-3"
+          transition={{ duration: 0.7, delay: 0.85 }}
+          className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 border-t border-white/[0.06] pt-6 md:pt-8"
         >
-          <a
-            href="#projects"
-            className="inline-flex items-center px-6 py-3 text-sm font-medium text-zinc-950 bg-white rounded-full hover:bg-zinc-200 transition-colors"
-            data-cursor
-          >
-            View work
-          </a>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 text-sm font-medium text-zinc-300 border border-white/10 rounded-full hover:border-white/25 hover:text-white transition-colors"
-            data-cursor
-          >
-            LinkedIn
-          </a>
-          <a
-            href="/Resume2025.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 text-sm font-medium text-zinc-400 hover:text-white transition-colors"
-            data-cursor
-          >
-            Resume
-          </a>
+          {profile.stats.map((stat) => (
+            <div key={stat.label}>
+              <p className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,4vw,2.5rem)] font-semibold text-white tracking-tight">
+                {stat.value}
+              </p>
+              <p className="text-[clamp(0.6875rem,1.5vw,0.8125rem)] text-[#8a8a93] mt-1">{stat.label}</p>
+            </div>
+          ))}
         </motion.div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 scroll-hint"
+      >
+        <span className="text-[10px] uppercase tracking-[0.2em] text-[#8a8a93]">Scroll</span>
+        <div className="w-px h-10 bg-gradient-to-b from-[#8a8a93] to-transparent" />
       </motion.div>
     </section>
   )
