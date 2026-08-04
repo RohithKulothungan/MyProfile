@@ -2,14 +2,14 @@ import { useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
+  const dotRef = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
-  const ringX = useSpring(mouseX, { stiffness: 150, damping: 20 })
-  const ringY = useSpring(mouseY, { stiffness: 150, damping: 20 })
-  const dotX = useSpring(mouseX, { stiffness: 500, damping: 40 })
-  const dotY = useSpring(mouseY, { stiffness: 500, damping: 40 })
+  const ringX = useSpring(mouseX, { stiffness: 200, damping: 25 })
+  const ringY = useSpring(mouseY, { stiffness: 200, damping: 25 })
+  const dotX = useSpring(mouseX, { stiffness: 600, damping: 45 })
+  const dotY = useSpring(mouseY, { stiffness: 600, damping: 45 })
 
   useEffect(() => {
     const isTouch = window.matchMedia('(pointer: coarse)').matches
@@ -22,11 +22,11 @@ export default function CustomCursor() {
 
     const hover = () => {
       ringRef.current?.classList.add('cursor-hover')
-      cursorRef.current?.classList.add('cursor-hover')
+      dotRef.current?.classList.add('cursor-hover')
     }
     const unhover = () => {
       ringRef.current?.classList.remove('cursor-hover')
-      cursorRef.current?.classList.remove('cursor-hover')
+      dotRef.current?.classList.remove('cursor-hover')
     }
 
     window.addEventListener('mousemove', move)
@@ -51,18 +51,22 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        ref={ringRef}
-        className="fixed top-0 left-0 z-[10000] pointer-events-none mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 z-[10000] pointer-events-none hidden md:block"
         style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
       >
-        <div className="w-10 h-10 rounded-full border border-white/60 transition-all duration-300 [&.cursor-hover]:w-16 [&.cursor-hover]:h-16 [&.cursor-hover]:border-white/30" />
+        <div
+          ref={ringRef}
+          className="w-8 h-8 rounded-full border border-white/20 transition-all duration-300 [&.cursor-hover]:w-12 [&.cursor-hover]:h-12 [&.cursor-hover]:border-white/10"
+        />
       </motion.div>
       <motion.div
-        ref={cursorRef}
         className="fixed top-0 left-0 z-[10001] pointer-events-none hidden md:block"
         style={{ x: dotX, y: dotY, translateX: '-50%', translateY: '-50%' }}
       >
-        <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 transition-all duration-300 [&.cursor-hover]:w-2 [&.cursor-hover]:h-2 [&.cursor-hover]:bg-white" />
+        <div
+          ref={dotRef}
+          className="w-1 h-1 rounded-full bg-white/60 transition-all duration-300 [&.cursor-hover]:scale-150"
+        />
       </motion.div>
     </>
   )

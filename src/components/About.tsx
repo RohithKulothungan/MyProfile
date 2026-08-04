@@ -1,73 +1,64 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { profile } from '../data/profile'
+import { profile, skills } from '../data/profile'
+import SectionHeader from './SectionHeader'
 
 export default function About() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="about" className="py-32 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="text-xs font-medium tracking-[0.3em] uppercase text-indigo-400 mb-4 block"
-            >
-              About
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl md:text-6xl font-bold leading-tight"
-            >
-              Building systems that{' '}
-              <span className="font-serif italic gradient-text">empower</span>{' '}
-              support teams
-            </motion.h2>
-          </div>
+    <section id="about" className="section-padding border-t border-white/[0.04]">
+      <div className="max-w-5xl mx-auto px-6">
+        <SectionHeader
+          label="About"
+          title="Engineering support at scale"
+          inView={inView}
+        />
 
-          <div className="space-y-6">
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg text-zinc-400 leading-relaxed"
-            >
-              {profile.about}
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-lg text-zinc-500 leading-relaxed"
-            >
-              {profile.personalNote}
-            </motion.p>
+        <div ref={ref} className="space-y-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="max-w-2xl space-y-5"
+          >
+            <p className="body-text">{profile.about}</p>
+            <p className="muted-text">{profile.personalNote}</p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="grid grid-cols-2 gap-4 pt-4"
-            >
-              {[
-                { label: 'Location', value: profile.location },
-                { label: 'Email', value: profile.email },
-                { label: 'Phone', value: profile.phone },
-                { label: 'Status', value: 'Open to opportunities' },
-              ].map((item) => (
-                <div key={item.label} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                  <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">{item.label}</p>
-                  <p className="text-sm text-zinc-300 break-all">{item.value}</p>
-                </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <p className="section-label mb-5">Expertise</p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-3">
+              {skills.map((skill) => (
+                <li key={skill} className="text-sm text-zinc-400">
+                  {skill}
+                </li>
               ))}
-            </motion.div>
-          </div>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="grid sm:grid-cols-3 gap-8 pt-4 border-t border-white/[0.04]"
+          >
+            {[
+              { label: 'Location', value: profile.location },
+              { label: 'Email', value: profile.email },
+              { label: 'Phone', value: profile.phone },
+            ].map((item) => (
+              <div key={item.label}>
+                <p className="text-xs text-zinc-500 mb-1.5">{item.label}</p>
+                <p className="text-sm text-zinc-300">{item.value}</p>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

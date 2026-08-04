@@ -4,24 +4,24 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-white/5 py-8">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-zinc-500">
-          © {year} {profile.fullName}. Crafted with care.
+    <footer className="border-t border-white/[0.04] py-10">
+      <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p className="text-xs text-zinc-600">
+          © {year} {profile.fullName}
         </p>
         <div className="flex items-center gap-6">
           <a
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-zinc-500 hover:text-white transition-colors"
+            className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
             data-cursor
           >
             LinkedIn
           </a>
           <a
             href={`mailto:${profile.email}`}
-            className="text-sm text-zinc-500 hover:text-white transition-colors"
+            className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
             data-cursor
           >
             Email

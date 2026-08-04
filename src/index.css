@@ -1,14 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Syne", sans-serif;
-  --font-serif: "Instrument Serif", serif;
-  --color-bg: #0a0a0f;
-  --color-surface: #12121a;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-muted: #8b8b9e;
-  --color-accent: #6366f1;
-  --color-accent-2: #8b5cf6;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --color-bg: #09090b;
+  --color-surface: #111113;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-muted: #71717a;
+  --color-accent: #818cf8;
 }
 
 * {
@@ -39,11 +38,13 @@ html.lenis body {
 }
 
 body {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   background: var(--color-bg);
-  color: #f4f4f5;
+  color: #fafafa;
   overflow-x: hidden;
   cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (max-width: 768px) {
@@ -53,12 +54,12 @@ body {
 }
 
 ::selection {
-  background: rgba(99, 102, 241, 0.4);
+  background: rgba(129, 140, 248, 0.35);
   color: #fff;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -66,15 +67,54 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.4);
+  background: rgba(129, 140, 248, 0.35);
   border-radius: 3px;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #a78bfa 50%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fafafa;
+}
+
+.body-text {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: #a1a1aa;
+}
+
+.muted-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #71717a;
+}
+
+.accent-text {
+  color: var(--color-accent);
+}
+
+.section-padding {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
 }
 
 .noise-overlay {
@@ -82,6 +122,6 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.03;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
