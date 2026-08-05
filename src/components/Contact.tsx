@@ -163,7 +163,7 @@ function ChannelCard({
         style={{ background: spotlight }}
       />
 
-      <div className="relative flex items-start justify-between gap-3 mb-4">
+      <div className="relative flex items-start justify-between gap-3 mb-5">
         <span
           className="inline-flex h-9 w-9 items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(255,255,255,0.08)] text-[var(--color-muted)] transition-all duration-300 group-hover:text-white group-hover:border-[rgba(255,255,255,0.16)]"
           style={{ color: undefined }}
@@ -175,20 +175,20 @@ function ChannelCard({
         </span>
       </div>
 
-      <p className="relative text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[var(--color-muted)] mb-3">
+      <p className="relative text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[var(--color-muted)] mb-2.5">
         {channel.label}
       </p>
-      <p className="relative font-[family-name:var(--font-display)] text-[1rem] font-medium text-white leading-snug mb-2 break-words">
+      <p className="relative font-[family-name:var(--font-display)] text-[1rem] font-medium text-white leading-snug mb-3 break-words">
         {displayValue}
       </p>
-      <p className="relative text-[0.75rem] text-[#6b6b75] group-hover:text-[var(--color-muted)] transition-colors">
-        {channel.id === 'location' && localTime ? `Local time · ${channel.hint}` : channel.hint}
+      <p className="relative text-[0.75rem] text-[#6b6b75] group-hover:text-[var(--color-muted)] transition-colors mt-auto">
+        {channel.hint}
       </p>
     </>
   )
 
   const className =
-    'group relative card card-pad-sm block h-full overflow-hidden transition-[border-color,box-shadow,opacity,transform] duration-300 hover:border-[rgba(124,92,255,0.35)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)]'
+    'group relative card card-pad-sm flex flex-col min-h-[10.5rem] h-full overflow-hidden transition-[border-color,box-shadow,opacity,transform] duration-300 hover:border-[rgba(124,92,255,0.35)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)]'
 
   return (
     <motion.div
@@ -294,73 +294,77 @@ export default function Contact() {
       <hr className="section-divider page-container mb-[var(--section-space)]" />
 
       <div className="page-container relative" ref={ref}>
-        <div className="grid lg:grid-cols-12 gap-x-12 gap-y-12 lg:gap-x-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-x-12 gap-y-14 lg:gap-x-16 lg:items-stretch">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-5 lg:sticky lg:top-28"
+            className="lg:col-span-5 lg:sticky lg:top-28 flex flex-col justify-between gap-[var(--block-space)]"
           >
-            <p className="eyebrow mb-3">Contact</p>
-            <h2 className="display-lg text-white mb-5">
-              Let&apos;s build something remarkable
-            </h2>
-            <p className="body-lg max-w-md mb-8">
-              Open to full-time roles, contract work, and conversations about support engineering, AI, and platform architecture.
-            </p>
+            <div className="flex flex-col gap-[var(--stack-space)]">
+              <div>
+                <p className="eyebrow mb-3">Contact</p>
+                <h2 className="display-lg text-white mb-6">
+                  Let&apos;s build something remarkable
+                </h2>
+                <p className="body-lg max-w-md">
+                  Open to full-time roles, contract work, and conversations about support engineering, AI, and platform architecture.
+                </p>
+              </div>
 
-            <div className="mb-8">
-              <p className="text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-[var(--color-muted)] mb-3">
-                Direct line
-              </p>
-              <motion.button
-                type="button"
-                onClick={copyEmail}
-                className="group block w-full text-left"
-                data-cursor
-                whileHover={{ x: 2 }}
-                whileTap={{ scale: 0.99 }}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={copied === 'email' ? 'copied' : 'email'}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.22 }}
-                    className="font-[family-name:var(--font-display)] text-[clamp(1.125rem,2.2vw+0.5rem,1.75rem)] font-semibold leading-snug tracking-[-0.02em] text-white transition-colors group-hover:text-[#c4b5fd] break-all block"
-                  >
-                    {copied === 'email' ? 'Copied to clipboard ✓' : profile.email}
-                  </motion.span>
-                </AnimatePresence>
-                <span className="mt-2 inline-flex items-center gap-1.5 text-[0.8125rem] text-[var(--color-muted)] group-hover:text-[#9b8cff] transition-colors">
-                  {copied === 'email' ? 'Paste anywhere' : 'Click to copy · press C'}
-                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-                </span>
-              </motion.button>
-            </div>
+              <div className="pt-[var(--stack-space)] border-t border-[rgba(255,255,255,0.06)]">
+                <p className="text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-[var(--color-muted)] mb-4">
+                  Direct line
+                </p>
+                <motion.button
+                  type="button"
+                  onClick={copyEmail}
+                  className="group block w-full text-left space-y-3"
+                  data-cursor
+                  whileHover={{ x: 2 }}
+                  whileTap={{ scale: 0.99 }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={copied === 'email' ? 'copied' : 'email'}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.22 }}
+                      className="font-[family-name:var(--font-display)] text-[clamp(1.125rem,2.2vw+0.5rem,1.625rem)] font-semibold leading-[1.35] tracking-[-0.02em] text-white transition-colors group-hover:text-[#c4b5fd] break-all block"
+                    >
+                      {copied === 'email' ? 'Copied to clipboard ✓' : profile.email}
+                    </motion.span>
+                  </AnimatePresence>
+                  <span className="block text-[0.8125rem] leading-relaxed text-[var(--color-muted)] group-hover:text-[#9b8cff] transition-colors">
+                    {copied === 'email' ? 'Paste anywhere' : 'Click to copy · press C'}
+                    <span aria-hidden className="ml-1.5 inline-block transition-transform group-hover:translate-x-0.5">→</span>
+                  </span>
+                </motion.button>
+              </div>
 
-            <div className="mb-8">
-              <p className="text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-[var(--color-muted)] mb-3">
-                Quick topics
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {quickTopics.map((topic) => (
-                  <motion.a
-                    key={topic.label}
-                    href={`mailto:${profile.email}?subject=${encodeURIComponent(topic.subject)}`}
-                    className="tag !text-[#b8b8c0] hover:!text-white hover:!border-[rgba(124,92,255,0.35)] hover:!bg-[rgba(124,92,255,0.08)] transition-all"
-                    data-cursor
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    {topic.label}
-                  </motion.a>
-                ))}
+              <div className="pt-[var(--stack-space)] border-t border-[rgba(255,255,255,0.06)]">
+                <p className="text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-[var(--color-muted)] mb-4">
+                  Quick topics
+                </p>
+                <div className="flex flex-wrap gap-2.5">
+                  {quickTopics.map((topic) => (
+                    <motion.a
+                      key={topic.label}
+                      href={`mailto:${profile.email}?subject=${encodeURIComponent(topic.subject)}`}
+                      className="tag !text-[#b8b8c0] hover:!text-white hover:!border-[rgba(124,92,255,0.35)] hover:!bg-[rgba(124,92,255,0.08)] transition-all"
+                      data-cursor
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      {topic.label}
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-3 pt-2">
               <motion.a
                 href={`mailto:${profile.email}`}
                 className="btn-primary"
@@ -399,9 +403,9 @@ export default function Contact() {
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-7"
+            className="lg:col-span-7 flex flex-col justify-between gap-[var(--block-space)]"
           >
-            <div className="grid sm:grid-cols-2 gap-4 [perspective:1200px]">
+            <div className="grid sm:grid-cols-2 gap-5 [perspective:1200px]">
               {channels.map((channel, index) => (
                 <ChannelCard
                   key={channel.id}
@@ -419,7 +423,7 @@ export default function Contact() {
             </div>
 
             <motion.div
-              className="mt-8 flex flex-wrap items-center gap-3 px-1"
+              className="flex flex-wrap items-center gap-3 pt-[var(--stack-space)] border-t border-[rgba(255,255,255,0.06)]"
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.45 }}
@@ -428,9 +432,8 @@ export default function Contact() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-mint)] opacity-40" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-mint)]" />
               </span>
-              <p className="text-[0.8125rem] text-[var(--color-muted)]">
+              <p className="text-[0.8125rem] leading-relaxed text-[var(--color-muted)]">
                 Open to opportunities · Based in {profile.location}
-                {localTime ? ` · Local time ${localTime}` : ''}
               </p>
             </motion.div>
           </motion.div>
