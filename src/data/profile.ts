@@ -1,7 +1,8 @@
 export const profile = {
   name: 'Rohith K',
   fullName: 'Rohith KM',
-  roles: ['Support Engineer', 'AI Builder', 'Salesforce Architect', 'Startup COO'],
+  headline: 'AI Engineer',
+  subheadline: 'Lead Backend Developer · Support Engineering · Salesforce',
   tagline:
     'I build intelligent systems — from enterprise customer support at Poshmark to AI-powered customer intelligence at Ansearch.',
   location: 'Chennai, India',

@@ -1,17 +1,7 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { profile } from '../data/profile'
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((i) => (i + 1) % profile.roles.length)
-    }, 2800)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <section className="relative min-h-[100dvh] flex flex-col overflow-x-clip">
       <div className="absolute inset-0 gradient-mesh pointer-events-none" />
@@ -44,25 +34,20 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="display-xl text-white mb-5"
+            className="display-xl text-white"
           >
             {profile.name}
           </motion.h1>
 
-          <div className="mb-8 min-h-[2.75rem] sm:min-h-[3rem] md:min-h-[3.25rem] flex items-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={roleIndex}
-                initial={{ y: 14, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -14, opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="role-title"
-              >
-                {profile.roles[roleIndex]}
-              </motion.p>
-            </AnimatePresence>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-6 mb-8 space-y-2 overflow-visible"
+          >
+            <p className="role-title">{profile.headline}</p>
+            <p className="role-subtitle">{profile.subheadline}</p>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
