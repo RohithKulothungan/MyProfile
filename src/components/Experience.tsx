@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { experience, education } from '../data/profile'
+import EducationHighlight from './EducationHighlight'
 
 export default function Experience() {
   const ref = useRef(null)
@@ -40,12 +41,22 @@ export default function Experience() {
 
                     <div className="card card-pad">
                       <div className="flex items-start justify-between gap-6 mb-4">
-                        <div className="min-w-0">
+                        <div className="min-w-0 flex-1">
                           <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] font-semibold text-white tracking-[-0.02em] leading-normal">
                             {job.role}
                           </h3>
                           <p className="text-[0.8125rem] font-medium text-[var(--color-accent)] mt-1">
                             {job.company}
+                            {'link' in job && job.link && (
+                              <a
+                                href={job.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="ml-2 text-[var(--color-muted)] hover:text-white transition-colors"
+                              >
+                                ↗
+                              </a>
+                            )}
                           </p>
                         </div>
                         <div className="text-right shrink-0 text-[0.8125rem] text-[var(--color-muted)] leading-relaxed">
@@ -101,20 +112,21 @@ export default function Experience() {
             <div className="flex flex-col gap-4">
               {education.map((edu) => (
                 <div key={edu.school} className="card card-pad-sm">
-                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[var(--color-accent)] mb-2">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] leading-normal text-[var(--color-accent)] mb-2 py-0.5">
                     {edu.year}
                   </p>
-                  <h4 className="font-[family-name:var(--font-display)] text-[0.9375rem] font-semibold text-white mb-1 tracking-[-0.01em]">
+                  <h4 className="font-[family-name:var(--font-display)] text-[0.9375rem] font-semibold text-white mb-1 tracking-[-0.01em] leading-normal">
                     {edu.degree}
                   </h4>
                   <p className="text-[0.8125rem] text-[var(--color-muted)]">{edu.school}</p>
-                  <p className="text-[0.75rem] text-[#6b6b75] mt-1">{edu.location}</p>
+                  <p className="text-[0.75rem] text-[#6b6b75] mt-1 leading-normal">{edu.location}</p>
                   {edu.note && (
-                    <p className="text-[0.75rem] text-[var(--color-mint)] mt-2.5 font-medium">{edu.note}</p>
+                    <p className="text-[0.75rem] text-[var(--color-mint)] mt-2.5 font-medium leading-relaxed">{edu.note}</p>
                   )}
                 </div>
               ))}
             </div>
+            <EducationHighlight />
           </motion.div>
         </div>
       </div>

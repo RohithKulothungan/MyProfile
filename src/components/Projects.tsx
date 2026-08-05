@@ -17,6 +17,10 @@ function ProjectCard({
 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-5%' })
+  const Wrapper = project.link ? 'a' : 'div'
+  const wrapperProps = project.link
+    ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' }
+    : {}
 
   return (
     <motion.article
@@ -25,10 +29,11 @@ function ProjectCard({
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.06 }}
       className={`group relative ${spanClass[project.span]} flex`}
-      data-cursor
     >
-      <div
+      <Wrapper
+        {...wrapperProps}
         className="card card-pad flex flex-col w-full group-hover:-translate-y-0.5"
+        data-cursor={project.link ? true : undefined}
         style={{
           transition: 'transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease',
         }}
@@ -69,7 +74,7 @@ function ProjectCard({
             </span>
           ))}
         </div>
-      </div>
+      </Wrapper>
     </motion.article>
   )
 }
@@ -94,7 +99,7 @@ export default function Projects() {
             <h2 className="display-lg text-white">Systems I&apos;ve built</h2>
           </div>
           <p className="body-md max-w-xs md:text-right md:pb-1">
-            Five projects that transformed support at scale.
+            Five projects across AI startups and enterprise support.
           </p>
         </motion.div>
 

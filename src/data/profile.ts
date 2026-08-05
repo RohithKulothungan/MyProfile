@@ -1,24 +1,107 @@
 export const profile = {
   name: 'Rohith K',
   fullName: 'Rohith KM',
-  roles: ['Support Engineer', 'AI Builder', 'Salesforce Architect'],
-  tagline: 'I design systems that make customer support faster, smarter, and impossible to ignore.',
+  roles: ['Support Engineer', 'AI Builder', 'Salesforce Architect', 'Startup COO'],
+  tagline:
+    'I build intelligent systems — from enterprise customer support at Poshmark to AI-powered customer intelligence at Ansearch.',
   location: 'Chennai, India',
   email: 'rohithkannan.2595@gmail.com',
   phone: '+91 8870312775',
   linkedin: 'https://www.linkedin.com/in/rohith-k-09546a150/',
   about:
-    'Technical owner at Poshmark building the infrastructure behind world-class customer support — from Salesforce Service Cloud to AI chatbots and high-scale backend platforms.',
+    'Technical owner at Poshmark building the infrastructure behind world-class customer support. Previously COO and founding-team engineer at Ansearch — an Edinburgh-based AI startup turning customer conversations into product and sales signals. MSc in Artificial Intelligence from Heriot-Watt University, Edinburgh.',
   philosophy:
-    'Great support engineering is invisible to customers and indispensable to teams. I build for both.',
+    'Great engineering connects what customers say to what teams ship — traceable, measurable, and built to scale.',
   stats: [
     { value: '8+', label: 'Years building' },
-    { value: '5', label: 'Core systems shipped' },
-    { value: '3–9%', label: 'GMV lift from ML' },
+    { value: '2', label: 'Companies shaped' },
+    { value: 'MSc', label: 'AI · Heriot-Watt' },
   ],
 }
 
+export const ansearch = {
+  name: 'Ansearch',
+  url: 'https://ansearch.ai',
+  tagline: 'Customer Intelligence for Product Management & Sales',
+  headline: 'Your customers are telling you what they want. Ansearch makes sure you hear it.',
+  description:
+    'Ansearch turns every customer interaction into sharper sales, GTM, and roadmap updates — traceable to the exact word, automatic, and hallucination-free.',
+  role: 'COO · Founding Team',
+  secondaryRole: 'Integration Specialist & ML Engineer',
+  period: '2023 — 2024',
+  location: 'Edinburgh, United Kingdom',
+  linkedin: 'https://www.linkedin.com/in/rohith-k-09546a150/',
+  contributions: [
+    'Founding-team engineer building the Enterprise Search / customer intelligence SaaS from prototype to product',
+    'Designed scalable architecture and ML pipelines for transcript analysis with zero-hallucination traceability',
+    'Led integrations with task systems (Linear, Jira roadmap) and third-party data sources',
+    'COO — owned operations, engineering delivery, and platform reliability across UK and EU infrastructure',
+  ],
+  howItWorks: [
+    {
+      step: '01',
+      title: 'Record or upload interactions',
+      description:
+        'Works entirely in the browser — no app, no plugin, no post-meeting admin. Upload calls, meetings, and customer conversations.',
+    },
+    {
+      step: '02',
+      title: 'AI analyses every transcript',
+      description:
+        'Extracts pain points, buying intent, feature requests, company context, and product signals. Builds a searchable knowledge base of customer voices.',
+    },
+    {
+      step: '03',
+      title: 'Roadmap & backlog, updated',
+      description:
+        'Flags signals for review, updates your backlog in Linear or Jira, and traces every ticket back to the exact customer sentence.',
+    },
+  ],
+  signals: [
+    'Pain points & feature requests',
+    'Buying intent detection',
+    'Company & persona mapping',
+    'Hallucination-free analysis pipeline',
+    'CRM & GTM automation',
+    'Sovereign cloud infrastructure',
+  ],
+  stack: ['Python', 'ML Pipelines', 'RAG', 'REST APIs', 'Docker', 'Linear', 'NLP'],
+}
+
+export const education = [
+  {
+    school: 'Heriot-Watt University',
+    degree: 'MSc Artificial Intelligence',
+    year: '2024',
+    location: 'Edinburgh, Scotland, UK',
+    note: 'Built foundational AI models from scratch — including encoder-decoder transformer models for French–English translation achieving 67% accuracy.',
+    highlights: [
+      'Deep learning & neural network foundations',
+      'Encoder-decoder transformers for machine translation',
+      'Model evaluation, training pipelines, and NLP research',
+    ],
+  },
+  {
+    school: 'Pondicherry University (SMVEC)',
+    degree: 'B.Tech Information Technology',
+    year: '2017',
+    location: 'Pondicherry, India',
+    note: 'University Rank Holder · 9.28 GPA',
+  },
+]
+
 export const projects = [
+  {
+    id: 'ansearch-platform',
+    title: 'Ansearch AI Platform',
+    subtitle: 'Founding team · Edinburgh',
+    description:
+      'Customer intelligence SaaS that analyses transcripts for product signals, buying intent, and feature requests — with every insight traced to the exact customer sentence.',
+    tags: ['AI', 'RAG', 'NLP', 'Python'],
+    span: 'large' as const,
+    accent: '#FF6B4A',
+    link: 'https://ansearch.ai',
+  },
   {
     id: 'case-tracking',
     title: 'Case Tracking System',
@@ -26,7 +109,7 @@ export const projects = [
     description:
       'MongoDB for lightning-fast case discovery. Salesforce as the conversation source of truth. Synced updates, ownership checks, and operational monitoring at scale.',
     tags: ['MongoDB', 'Salesforce', 'Node.js', 'Redis'],
-    span: 'large' as const,
+    span: 'medium' as const,
     accent: '#7C5CFF',
   },
   {
@@ -37,7 +120,7 @@ export const projects = [
       'Vendor evaluation to production — workflows, APIs, safety controls, and human escalation across orders, refunds, and returns.',
     tags: ['AI', 'Service Cloud', 'OAuth'],
     span: 'medium' as const,
-    accent: '#FF6B4A',
+    accent: '#2DD4BF',
   },
   {
     id: 'microservices',
@@ -47,7 +130,7 @@ export const projects = [
       'Secure APIs exposing customer, order, and support data with scoped access and full observability.',
     tags: ['Ruby', 'REST', 'AWS'],
     span: 'small' as const,
-    accent: '#2DD4BF',
+    accent: '#FBBF24',
   },
   {
     id: 'salesforce',
@@ -57,16 +140,6 @@ export const projects = [
       'Omni-Channel, dashboards, and automation across Apex, Flow, LWC, and Aura.',
     tags: ['Apex', 'LWC', 'Flow'],
     span: 'small' as const,
-    accent: '#FBBF24',
-  },
-  {
-    id: 'analytics',
-    title: 'Analytics & Self-Service',
-    subtitle: 'Deflection at scale',
-    description:
-      'Knowledge discovery and case deflection with measurable impact on volume and cost.',
-    tags: ['Kibana', 'Knowledge', 'Analytics'],
-    span: 'medium' as const,
     accent: '#60A5FA',
   },
 ]
@@ -74,79 +147,62 @@ export const projects = [
 export const experience = [
   {
     company: 'Poshmark',
-    role: 'ML & AI Engineer · Lead Backend',
+    role: 'ML & AI Engineer · Lead Backend Developer',
     period: '2024 — Present',
-    location: 'Chennai',
+    location: 'Chennai, India',
     summary:
-      'Own critical sprint delivery, Service Cloud integrations, and Customer Ops automation. ML feed personalization driving measurable GMV growth.',
-    stack: ['Ruby on Rails', 'MongoDB', 'Apex', 'Einstein AI'],
+      'Technical owner for critical sprint delivery, Service Cloud integrations (Einstein AI, Stella Connect), and Customer Operations automation. ML feed personalization contributing to 3–9% daily GMV lift.',
+    stack: ['Ruby on Rails', 'MongoDB', 'Apex', 'Einstein AI', 'Kibana'],
   },
   {
     company: 'Ansearch',
-    role: 'Software Intern · Founding Team',
+    role: 'COO · Founding Team Engineer',
     period: '2023 — 2024',
-    location: 'Edinburgh',
+    location: 'Edinburgh, UK',
     summary:
-      'Built Enterprise Search SaaS prototype — ML pipelines, integrations, and scalable architecture from day one.',
-    stack: ['Python', 'ML', 'Docker'],
+      'Founding-team member at an Edinburgh AI startup building customer intelligence software. Served as COO overseeing operations while engineering ML pipelines, integrations, and the core analysis platform that powers ansearch.ai.',
+    stack: ['Python', 'ML Pipelines', 'RAG', 'Docker', 'REST APIs'],
+    link: 'https://ansearch.ai',
   },
   {
     company: 'Poshmark',
-    role: 'Senior Software Engineer II',
+    role: 'Senior Software Engineer II (Backend)',
     period: '2019 — 2023',
-    location: 'Chennai',
+    location: 'Chennai, India',
     summary:
-      'ML content-tagging systems and production architecture connecting models to backend at scale.',
-    stack: ['Ruby on Rails', 'MongoDB', 'Apex'],
+      'Built ML content-tagging systems — image embeddings, text embeddings, cosine similarity — and production architecture connecting models to backend at scale.',
+    stack: ['Ruby on Rails', 'MongoDB', 'Apex', 'SOQL'],
   },
   {
-    company: 'Zoho',
-    role: 'Member Technical Staff',
+    company: 'Zoho Corporation',
+    role: 'Member Technical Staff (Backend)',
     period: '2017 — 2019',
-    location: 'Chennai',
+    location: 'Chennai, India',
     summary:
-      'Backend services for Zoho Finance — PayPal, PayTm integrations, GST tax compliance, and API automation.',
+      'Backend services for Zoho Finance suite — PayPal & PayTm integrations, GST tax compliance, Zoho Invoice APIs, and automated API testing.',
     stack: ['Java', 'SQL', 'REST APIs'],
-  },
-]
-
-export const education = [
-  {
-    school: 'Herriot Watt University',
-    degree: 'MSc Artificial Intelligence',
-    year: '2024',
-    location: 'Edinburgh, Scotland',
-  },
-  {
-    school: 'Pondicherry University',
-    degree: 'B.Tech Information Technology',
-    year: '2017',
-    location: 'Pondicherry, India',
-    note: 'University Rank · 9.28 GPA',
   },
 ]
 
 export const skills = [
   'Salesforce Service Cloud',
-  'Apex',
-  'Flow',
-  'LWC',
-  'Node.js',
-  'Ruby on Rails',
-  'Java',
-  'REST APIs',
-  'MongoDB',
-  'Redis',
-  'AWS',
-  'AI Workflows',
-  'OAuth 2.0',
-  'Kibana',
-  'Datadog',
+  'Apex · Flow · LWC',
+  'AI & ML Pipelines',
+  'RAG & NLP',
+  'Transformers',
+  'Node.js · Ruby · Java',
+  'Python',
+  'REST APIs · OAuth',
+  'MongoDB · Redis · AWS',
+  'Docker',
+  'Kibana · Datadog',
   'Technical Leadership',
+  'Startup Operations',
 ]
 
 export const navLinks = [
   { label: 'About', href: '#about' },
+  { label: 'Ansearch', href: '#ansearch' },
   { label: 'Work', href: '#work' },
   { label: 'Journey', href: '#journey' },
   { label: 'Contact', href: '#contact' },
