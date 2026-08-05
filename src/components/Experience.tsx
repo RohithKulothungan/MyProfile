@@ -1,17 +1,104 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { experience, education } from '../data/profile'
-import EducationHighlight from './EducationHighlight'
+
+function ExperienceRow({
+  job,
+  index,
+  inView,
+}: {
+  job: (typeof experience)[0]
+  index: number
+  inView: boolean
+}) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: 0.06 + index * 0.05 }}
+      className="grid md:grid-cols-[9rem_1fr] gap-4 md:gap-10 py-8 md:py-10 border-b border-[rgba(255,255,255,0.07)] last:border-0"
+    >
+      <div className="text-[0.8125rem] text-[var(--color-muted)] leading-relaxed">
+        <p className="font-medium text-white/80">{job.period}</p>
+        <p className="mt-1">{job.location}</p>
+      </div>
+
+      <div className="min-w-0">
+        <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] md:text-[1.125rem] font-semibold text-white leading-snug mb-1">
+          {job.role}
+        </h3>
+        <p className="text-[0.875rem] font-medium text-[var(--color-accent)] mb-4">
+          {job.company}
+          {'link' in job && job.link && (
+            <a
+              href={job.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 text-[var(--color-muted)] hover:text-white transition-colors"
+            >
+              ↗
+            </a>
+          )}
+        </p>
+        <p className="body-md leading-relaxed mb-4 max-w-2xl">{job.summary}</p>
+        <p className="text-[0.75rem] text-[#6b6b75] leading-relaxed">{job.stack.join(' · ')}</p>
+      </div>
+    </motion.article>
+  )
+}
+
+function EducationRow({
+  edu,
+  index,
+  inView,
+}: {
+  edu: (typeof education)[0]
+  index: number
+  inView: boolean
+}) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: 0.1 + index * 0.06 }}
+      className="py-8 md:py-10 border-b border-[rgba(255,255,255,0.07)] last:border-0"
+    >
+      <p className="text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-[var(--color-accent)] mb-3">
+        {edu.year}
+      </p>
+      <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] font-semibold text-white leading-snug mb-2">
+        {edu.degree}
+      </h3>
+      <p className="text-[0.875rem] text-[var(--color-muted)] mb-1">{edu.school}</p>
+      <p className="text-[0.8125rem] text-[#6b6b75] mb-4">{edu.location}</p>
+
+      {edu.note && (
+        <p className="body-md text-[#b0b0b8] leading-relaxed mb-4 max-w-xl">{edu.note}</p>
+      )}
+
+      {'highlights' in edu && edu.highlights && (
+        <ul className="space-y-2 mt-2">
+          {edu.highlights.map((h) => (
+            <li key={h} className="flex gap-2.5 text-[0.8125rem] text-[#8a8a93] leading-relaxed">
+              <span className="text-[var(--color-accent)] shrink-0">·</span>
+              {h}
+            </li>
+          ))}
+        </ul>
+      )}
+    </motion.article>
+  )
+}
 
 export default function Experience() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-8%' })
 
   return (
-    <section id="journey" className="section overflow-x-clip">
+    <section id="journey" className="section">
       <hr className="section-divider page-container mb-[var(--section-space)]" />
 
-      <div className="page-container">
+      <div className="page-container" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -22,112 +109,26 @@ export default function Experience() {
           <h2 className="display-lg text-white">Experience & education</h2>
         </motion.div>
 
-        <div ref={ref} className="grid lg:grid-cols-12 gap-10 lg:gap-14">
-          <div className="lg:col-span-8">
-            {/* Desktop timeline */}
-            <div className="hidden lg:block relative pl-1">
-              <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[rgba(255,255,255,0.09)]" />
-
-              <div className="space-y-5">
-                {experience.map((job, i) => (
-                  <motion.div
-                    key={`${job.company}-${job.period}`}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.08 + i * 0.06 }}
-                    className="relative pl-9"
-                  >
-                    <div className="absolute left-0 top-5 w-[11px] h-[11px] rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-bg)]" />
-
-                    <div className="card card-pad">
-                      <div className="flex items-start justify-between gap-6 mb-4">
-                        <div className="min-w-0 flex-1">
-                          <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] font-semibold text-white tracking-[-0.02em] leading-normal">
-                            {job.role}
-                          </h3>
-                          <p className="text-[0.8125rem] font-medium text-[var(--color-accent)] mt-1">
-                            {job.company}
-                            {'link' in job && job.link && (
-                              <a
-                                href={job.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="ml-2 text-[var(--color-muted)] hover:text-white transition-colors"
-                              >
-                                ↗
-                              </a>
-                            )}
-                          </p>
-                        </div>
-                        <div className="text-right shrink-0 text-[0.8125rem] text-[var(--color-muted)] leading-relaxed">
-                          <p>{job.period}</p>
-                          <p>{job.location}</p>
-                        </div>
-                      </div>
-                      <p className="body-md mb-4">{job.summary}</p>
-                      <p className="text-[0.6875rem] text-[#6b6b75] tracking-wide">
-                        {job.stack.join(' · ')}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile / tablet scroll */}
-            <div className="lg:hidden scroll-bleed flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+          {/* Work */}
+          <div>
+            <p className="eyebrow mb-2">Work</p>
+            <div className="mt-6">
               {experience.map((job, i) => (
-                <motion.article
-                  key={`mobile-${job.company}-${job.period}`}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.08 + i * 0.05 }}
-                  className="card card-pad-sm min-w-[min(82vw,320px)] snap-center shrink-0"
-                >
-                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[var(--color-accent)] mb-2">
-                    {job.period}
-                  </p>
-                  <h3 className="font-[family-name:var(--font-display)] text-[1rem] font-semibold text-white mb-1">
-                    {job.role}
-                  </h3>
-                  <p className="text-[0.8125rem] text-[var(--color-muted)] mb-3">
-                    {job.company} · {job.location}
-                  </p>
-                  <p className="body-md text-[0.875rem]">{job.summary}</p>
-                </motion.article>
+                <ExperienceRow key={`${job.company}-${job.period}`} job={job} index={i} inView={inView} />
               ))}
             </div>
-            <p className="lg:hidden text-center text-[0.6875rem] text-[#6b6b75] mt-4 tracking-wide">
-              Swipe to explore
-            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.25 }}
-            className="lg:col-span-4"
-          >
-            <p className="eyebrow mb-5">Education</p>
-            <div className="flex flex-col gap-4">
-              {education.map((edu) => (
-                <div key={edu.school} className="card card-pad-sm">
-                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] leading-normal text-[var(--color-accent)] mb-2 py-0.5">
-                    {edu.year}
-                  </p>
-                  <h4 className="font-[family-name:var(--font-display)] text-[0.9375rem] font-semibold text-white mb-1 tracking-[-0.01em] leading-normal">
-                    {edu.degree}
-                  </h4>
-                  <p className="text-[0.8125rem] text-[var(--color-muted)]">{edu.school}</p>
-                  <p className="text-[0.75rem] text-[#6b6b75] mt-1 leading-normal">{edu.location}</p>
-                  {edu.note && (
-                    <p className="text-[0.75rem] text-[var(--color-mint)] mt-2.5 font-medium leading-relaxed">{edu.note}</p>
-                  )}
-                </div>
+          {/* Education */}
+          <div>
+            <p className="eyebrow mb-2">Education</p>
+            <div className="mt-6">
+              {education.map((edu, i) => (
+                <EducationRow key={edu.school} edu={edu} index={i} inView={inView} />
               ))}
             </div>
-            <EducationHighlight />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
