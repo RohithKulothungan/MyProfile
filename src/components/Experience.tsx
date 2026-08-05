@@ -7,7 +7,7 @@ export default function Experience() {
   const inView = useInView(ref, { once: true, margin: '-8%' })
 
   return (
-    <section id="journey" className="section overflow-hidden">
+    <section id="journey" className="section overflow-x-clip">
       <hr className="section-divider page-container mb-[var(--section-space)]" />
 
       <div className="page-container">
@@ -41,7 +41,7 @@ export default function Experience() {
                     <div className="card card-pad">
                       <div className="flex items-start justify-between gap-6 mb-4">
                         <div className="min-w-0">
-                          <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] font-semibold text-white tracking-[-0.02em]">
+                          <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] font-semibold text-white tracking-[-0.02em] leading-normal">
                             {job.role}
                           </h3>
                           <p className="text-[0.8125rem] font-medium text-[var(--color-accent)] mt-1">

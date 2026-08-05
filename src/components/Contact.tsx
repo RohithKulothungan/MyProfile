@@ -30,9 +30,9 @@ export default function Contact() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="card overflow-hidden relative"
+          className="card relative"
         >
-          <div className="absolute inset-0 gradient-mesh pointer-events-none opacity-60" />
+          <div className="absolute inset-0 gradient-mesh pointer-events-none opacity-60 rounded-[inherit]" />
 
           <div className="relative grid lg:grid-cols-2 gap-10 lg:gap-14 card-pad">
             <div>
@@ -60,7 +60,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center gap-0">
               {rows.map((item) => (
                 <div key={item.label}>
                   {item.href ? (
@@ -69,19 +69,18 @@ export default function Contact() {
                       target={item.href.startsWith('http') || item.href.endsWith('.pdf') ? '_blank' : undefined}
                       rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       onClick={item.action ? (e) => { e.preventDefault(); item.action?.() } : undefined}
-                      className="group grid grid-cols-[5rem_1fr_auto] items-center gap-4 py-4 border-b border-[rgba(255,255,255,0.06)] last:border-0 hover:bg-white/[0.02] -mx-3 px-3 rounded-[var(--radius-sm)] transition-colors"
+                      className="group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4 py-4 border-b border-[rgba(255,255,255,0.06)] last:border-0 hover:bg-white/[0.02] px-2 sm:px-3 rounded-[var(--radius-sm)] transition-colors"
                       data-cursor
                     >
-                      <span className="text-[0.8125rem] text-[var(--color-muted)]">{item.label}</span>
-                      <span className="text-[0.8125rem] text-white group-hover:text-[var(--color-accent)] transition-colors truncate">
+                      <span className="text-[0.8125rem] text-[var(--color-muted)] shrink-0">{item.label}</span>
+                      <span className="text-[0.8125rem] text-white group-hover:text-[#b8a8ff] transition-colors sm:text-right break-all">
                         {item.label === 'Email' && copied ? 'Copied!' : item.value}
                       </span>
-                      <span className="text-[var(--color-muted)] text-sm opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                     </a>
                   ) : (
-                    <div className="grid grid-cols-[5rem_1fr] items-center gap-4 py-4 border-b border-[rgba(255,255,255,0.06)] last:border-0">
-                      <span className="text-[0.8125rem] text-[var(--color-muted)]">{item.label}</span>
-                      <span className="text-[0.8125rem] text-white">{item.value}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4 py-4 border-b border-[rgba(255,255,255,0.06)] last:border-0 px-2 sm:px-3">
+                      <span className="text-[0.8125rem] text-[var(--color-muted)] shrink-0">{item.label}</span>
+                      <span className="text-[0.8125rem] text-white sm:text-right">{item.value}</span>
                     </div>
                   )}
                 </div>

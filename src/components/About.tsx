@@ -56,7 +56,7 @@ export default function About() {
                 { label: 'Email', value: profile.email },
               ].map((item) => (
                 <div key={item.label}>
-                  <p className="text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-[var(--color-muted)] mb-1.5">
+                  <p className="text-[0.6875rem] font-medium uppercase tracking-[0.08em] leading-normal text-[var(--color-muted)] mb-1.5 py-0.5">
                     {item.label}
                   </p>
                   <p className="text-[0.875rem] text-white">{item.value}</p>

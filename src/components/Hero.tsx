@@ -13,7 +13,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col overflow-hidden">
+    <section className="relative min-h-[100dvh] flex flex-col overflow-x-clip">
       <div className="absolute inset-0 gradient-mesh pointer-events-none" />
       <div className="absolute inset-0 grid-bg pointer-events-none" />
 
@@ -24,8 +24,8 @@ export default function Hero() {
           transition={{ delay: 0.7, duration: 0.8 }}
           className="hidden md:flex justify-end py-4"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[var(--radius-full)] border border-[rgba(255,255,255,0.09)] bg-white/[0.02] text-[0.6875rem] font-medium text-[var(--color-muted)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-2 rounded-[var(--radius-full)] border border-[rgba(255,255,255,0.09)] bg-white/[0.02] text-[0.6875rem] font-medium leading-normal text-[var(--color-muted)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
             Available for opportunities
           </div>
         </motion.div>
@@ -44,30 +44,25 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="display-xl text-white mb-4"
+            className="display-xl text-white mb-5"
           >
             {profile.name}
           </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
-            className="h-[1.35em] overflow-hidden mb-6"
-          >
+          <div className="mb-8 min-h-[2.75rem] sm:min-h-[3rem] md:min-h-[3.25rem] flex items-center">
             <AnimatePresence mode="wait">
               <motion.p
                 key={roleIndex}
-                initial={{ y: 24, opacity: 0 }}
+                initial={{ y: 14, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -24, opacity: 0 }}
+                exit={{ y: -14, opacity: 0 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="font-[family-name:var(--font-display)] text-[clamp(1.125rem,2.5vw+0.25rem,1.75rem)] font-medium text-[var(--color-accent)] tracking-[-0.02em]"
+                className="role-title"
               >
                 {profile.roles[roleIndex]}
               </motion.p>
             </AnimatePresence>
-          </motion.div>
+          </div>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -107,10 +102,10 @@ export default function Hero() {
         >
           {profile.stats.map((stat, i) => (
             <div key={stat.label} className={i > 0 ? 'pl-6 md:pl-10 border-l border-[rgba(255,255,255,0.09)]' : ''}>
-              <p className="font-[family-name:var(--font-display)] text-[clamp(1.375rem,3vw,2rem)] font-semibold text-white tracking-[-0.03em] leading-none">
+              <p className="font-[family-name:var(--font-display)] text-[clamp(1.375rem,3vw,2rem)] font-semibold text-white tracking-[-0.03em] leading-tight">
                 {stat.value}
               </p>
-              <p className="text-[0.75rem] text-[var(--color-muted)] mt-2 leading-snug">{stat.label}</p>
+              <p className="text-[0.75rem] text-[var(--color-muted)] mt-2 leading-normal">{stat.label}</p>
             </div>
           ))}
         </motion.div>
@@ -122,7 +117,7 @@ export default function Hero() {
         transition={{ delay: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 scroll-hint pointer-events-none"
       >
-        <span className="text-[0.625rem] uppercase tracking-[0.18em] text-[var(--color-muted)]">Scroll</span>
+        <span className="text-[0.625rem] uppercase tracking-[0.18em] text-[var(--color-muted)] leading-normal">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-[rgba(255,255,255,0.2)] to-transparent" />
       </motion.div>
     </section>

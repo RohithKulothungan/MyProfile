@@ -28,28 +28,28 @@ function ProjectCard({
       data-cursor
     >
       <div
-        className="card card-pad flex flex-col w-full h-full group-hover:-translate-y-0.5"
+        className="card card-pad flex flex-col w-full group-hover:-translate-y-0.5"
         style={{
           transition: 'transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = `var(--inset-highlight), 0 16px 48px -16px ${project.accent}40`
+          e.currentTarget.style.boxShadow = `0 16px 48px -16px ${project.accent}40`
           e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)'
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = 'var(--inset-highlight), var(--shadow-card)'
+          e.currentTarget.style.boxShadow = 'var(--shadow-card)'
           e.currentTarget.style.borderColor = 'rgba(255,255,255,0.09)'
         }}
       >
         <div className="flex items-start justify-between gap-4 mb-6">
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <p
-              className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] mb-2"
+              className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] leading-normal mb-2 py-0.5"
               style={{ color: project.accent }}
             >
               {project.subtitle}
             </p>
-            <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] md:text-[1.1875rem] font-semibold text-white tracking-[-0.02em] leading-snug">
+            <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] md:text-[1.1875rem] font-semibold text-white tracking-[-0.02em] leading-normal">
               {project.title}
             </h3>
           </div>
@@ -98,7 +98,7 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 auto-rows-fr">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 auto-rows-auto items-start">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
