@@ -13,78 +13,76 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-end overflow-hidden">
-      <div className="absolute inset-0 gradient-mesh" />
-      <div className="absolute inset-0 grid-bg" />
+    <section className="relative min-h-[100dvh] flex flex-col overflow-hidden">
+      <div className="absolute inset-0 gradient-mesh pointer-events-none" />
+      <div className="absolute inset-0 grid-bg pointer-events-none" />
 
-      <div className="container-fluid relative z-10 flex flex-col justify-between min-h-[100dvh] pt-[calc(5rem+env(safe-area-inset-top))] pb-[max(2rem,env(safe-area-inset-bottom))]">
+      <div className="page-container relative z-10 flex flex-col flex-1 min-h-[100dvh] pt-[calc(4.5rem+env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="hidden md:flex justify-end"
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="hidden md:flex justify-end py-4"
         >
-          <div className="flex items-center gap-2 text-xs text-[#8a8a93]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[var(--radius-full)] border border-[rgba(255,255,255,0.09)] bg-white/[0.02] text-[0.6875rem] font-medium text-[var(--color-muted)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             Available for opportunities
           </div>
         </motion.div>
 
-        <div className="flex-1 flex flex-col justify-center py-8 md:py-12">
+        <div className="flex-1 flex flex-col justify-center py-10 md:py-16">
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="eyebrow mb-6 md:mb-8"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="eyebrow mb-5"
           >
             Customer Support · AI · Salesforce
           </motion.p>
 
-          <div className="mb-6 md:mb-8">
-            <motion.h1
-              initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="display-xl text-white"
-            >
-              {profile.name}
-            </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="display-xl text-white mb-4"
+          >
+            {profile.name}
+          </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="mt-4 md:mt-6 h-[1.4em] overflow-hidden"
-            >
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={roleIndex}
-                  initial={{ y: 28, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -28, opacity: 0 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-[family-name:var(--font-display)] text-[clamp(1.25rem,3vw+0.5rem,2.25rem)] font-medium text-[var(--color-accent)]"
-                >
-                  {profile.roles[roleIndex]}
-                </motion.p>
-              </AnimatePresence>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="h-[1.35em] overflow-hidden mb-6"
+          >
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={roleIndex}
+                initial={{ y: 24, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -24, opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="font-[family-name:var(--font-display)] text-[clamp(1.125rem,2.5vw+0.25rem,1.75rem)] font-medium text-[var(--color-accent)] tracking-[-0.02em]"
+              >
+                {profile.roles[roleIndex]}
+              </motion.p>
+            </AnimatePresence>
+          </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55 }}
-            className="body-lg max-w-2xl mb-10 md:mb-12"
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="body-lg max-w-[36rem] mb-10"
           >
             {profile.tagline}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-wrap gap-3"
+            transition={{ duration: 0.5, delay: 0.55 }}
+            className="flex flex-wrap gap-2.5"
           >
             <a href="#work" className="btn-primary" data-cursor>
               See my work
@@ -102,17 +100,17 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.85 }}
-          className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 border-t border-white/[0.06] pt-6 md:pt-8"
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="grid grid-cols-3 gap-6 md:gap-10 pt-8 border-t border-[rgba(255,255,255,0.09)]"
         >
-          {profile.stats.map((stat) => (
-            <div key={stat.label}>
-              <p className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,4vw,2.5rem)] font-semibold text-white tracking-tight">
+          {profile.stats.map((stat, i) => (
+            <div key={stat.label} className={i > 0 ? 'pl-6 md:pl-10 border-l border-[rgba(255,255,255,0.09)]' : ''}>
+              <p className="font-[family-name:var(--font-display)] text-[clamp(1.375rem,3vw,2rem)] font-semibold text-white tracking-[-0.03em] leading-none">
                 {stat.value}
               </p>
-              <p className="text-[clamp(0.6875rem,1.5vw,0.8125rem)] text-[#8a8a93] mt-1">{stat.label}</p>
+              <p className="text-[0.75rem] text-[var(--color-muted)] mt-2 leading-snug">{stat.label}</p>
             </div>
           ))}
         </motion.div>
@@ -121,11 +119,11 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 scroll-hint"
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 scroll-hint pointer-events-none"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-[#8a8a93]">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-[#8a8a93] to-transparent" />
+        <span className="text-[0.625rem] uppercase tracking-[0.18em] text-[var(--color-muted)]">Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-[rgba(255,255,255,0.2)] to-transparent" />
       </motion.div>
     </section>
   )

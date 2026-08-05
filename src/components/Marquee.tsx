@@ -4,14 +4,17 @@ export default function Marquee() {
   const items = [...skills, ...skills]
 
   return (
-    <section className="py-8 md:py-12 border-y border-white/[0.04] overflow-hidden" aria-hidden>
+    <section
+      className="py-6 md:py-8 border-y border-[rgba(255,255,255,0.06)] overflow-hidden bg-[var(--color-surface)]/40"
+      aria-hidden
+    >
       <div className="marquee-track">
         {items.map((skill, i) => (
           <span
             key={`${skill}-${i}`}
-            className="flex items-center gap-6 md:gap-10 px-4 md:px-6 text-[clamp(0.875rem,2vw,1.125rem)] font-medium text-[#8a8a93] whitespace-nowrap"
+            className="flex items-center gap-5 px-5 text-[0.8125rem] font-medium text-[var(--color-muted)] whitespace-nowrap"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" />
+            <span className="w-1 h-1 rounded-full bg-[var(--color-accent)]" />
             {skill}
           </span>
         ))}
