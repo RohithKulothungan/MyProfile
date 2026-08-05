@@ -1,8 +1,8 @@
 export const profile = {
   name: 'Rohith K',
   fullName: 'Rohith KM',
-  headline: 'AI Engineer',
-  subheadline: 'Lead Backend Developer · Support Engineering · Salesforce',
+  headline: 'Backend Engineer',
+  subheadline: 'MSc Artificial Intelligence · Lead Backend Developer · Support Engineering · Salesforce',
   tagline:
     'I build intelligent systems — from enterprise customer support at Poshmark to AI-powered customer intelligence at Ansearch.',
   location: 'Chennai, India',
@@ -148,7 +148,7 @@ export const projects = [
 export const experience = [
   {
     company: 'Poshmark',
-    role: 'ML & AI Engineer · Lead Backend Developer',
+    role: 'Lead Backend Developer · ML & AI Engineer',
     period: '2024 — Present',
     location: 'Chennai, India',
     summary:

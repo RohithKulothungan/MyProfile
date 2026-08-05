@@ -27,7 +27,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="eyebrow mb-5"
           >
-            Customer Support · AI · Salesforce
+            Customer Support · Backend · Salesforce
           </motion.p>
 
           <motion.h1
